@@ -19,6 +19,7 @@ page-editar-perfil {
         letter-spacing: 3px;
 
         h1{
+            font-size: 100%;
             color: white
           }
 
@@ -26,6 +27,7 @@ page-editar-perfil {
 
   .login-content {
     background: color($colors, primary, base);
+  }
   
     .login-box {
         background: color($colors, primary, contrast);
@@ -65,4 +67,4 @@ page-editar-perfil {
      }
   }
 
-}
+

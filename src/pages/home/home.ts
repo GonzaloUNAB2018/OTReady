@@ -11,6 +11,8 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 //import { ContactosPage } from '../contactos/contactos';
 import { LoginPage } from '../login/login';
 import { EditarPerfilPage } from '../editar-perfil/editar-perfil';
+import { empty } from 'rxjs/Observer';
+import { Perfil } from '../../models/perfil';
 
 @Component({
   selector: 'page-home',
@@ -22,6 +24,8 @@ export class HomePage {
   coor: boolean;
   perfilUser : any;
   perfil: any = null;
+  rut: any = null;
+  usuario : any = {} as Perfil
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -33,26 +37,32 @@ export class HomePage {
     public alertCtrl: AlertController,
     ) {
 
-    this.perfilData = afDatabase.object(`profile/`+ this.userId).valueChanges()
+    this.perfilData = afDatabase.object(`Usuarios/`+ this.userId).valueChanges()
+
+    this.perfil = this.perfilService.getPerfil
 
     if(this.perfil != 0){
-      this.navCtrl.setRoot(EditarPerfilPage)}
-      else{
-      /*perfilService.getPerfil(this.perfil)
-        .valueChanges().subscribe(profile =>{
-          if (profile == "Coordinador"){
+      perfilService.getPerfil(this.perfil)
+        .valueChanges().subscribe(perfil =>{
+          if (perfil == null ){
+            this.navCtrl.setRoot(EditarPerfilPage)
+          }else{
+          if (perfil == "Coordinador"){
             console.log("Sesión de Coordinador");
             this.coor = true
-          }else if (profile == "Gerencial"){
+          }else if (perfil == "Gerencial"){
             console.log("Sesión de Gerente");
             this.coor = true
           }else{
             console.log("Sesión de Técnico / Supervisor")
-            this.coor = false;
+            this.coor = false;}
           }
-         })*/
-      };
+        }
+      )
     }
+  }
+          
+  
   
     logout(){
       this.afAuth.auth.signOut()
@@ -66,13 +76,13 @@ export class HomePage {
         {this.navCtrl.setRoot(LoginPage);}
       );
   
-        }).catch((error) => {
+        }),(error) => {
         let alert = this.alertCtrl.create({
           title: 'Hubo un error en el cierre de sesión',
           subTitle: 'Por favor intente nuevamente.',
           buttons: ['OK']
         });
-          alert.present();})
+          alert.present();}
           
         }
 

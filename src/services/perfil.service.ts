@@ -12,10 +12,23 @@ export class PerfilService{
         private afAuth: AngularFireAuth){}
     //tipoPerfilUser: any = null;    
     perfil:any = null;
+    uid: any = null;
 
     public getPerfil(perfil){
-        //return this.afDatabase.object('profile/'+this.userId+'/perfil');
-        //return this.afDatabase.object('profile/'+this.userId+'/perfil')
+        return this.afDatabase.object('Usuarios/'+this.userId+'/perfil');
     }
+
+    public getUidPerfil(userId){
+        return this.afDatabase.object('Usuarios/'+this.userId);
+    }
+
+    public editPerfil(perfil){
+        return this.afDatabase.database.ref(`Usuarios/`+this.userId).set(perfil);
+    }
+
+    public createPerfil(perfil){
+        return this.afDatabase.database.ref(`Usuarios/`+this.userId).set(perfil);
+    }
+    
 
 }

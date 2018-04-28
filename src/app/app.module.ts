@@ -17,6 +17,7 @@ import { LoginPage } from '../pages/login/login';
 import { SigninPageModule } from '../pages/signin/signin.module';
 import { PerfilService } from '../services/perfil.service';
 import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
+import { EmpresaService } from '../services/empresa.services';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.mod
     StatusBar,
     SplashScreen,
     PerfilService,
+    EmpresaService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

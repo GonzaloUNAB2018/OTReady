@@ -1,24 +1,13 @@
 <ion-content class="login-content" padding>
+  <ion-icon button icon-only name="md-log-out" (click)="logout()" class="backButton"></ion-icon>
   <div class="login-box">
     <form  #registerForm="ngForm">
       <ion-row>
         <ion-col col-sm-2 col-md-3 col-lg-4 col-xl-4>
         </ion-col>
         <ion-col col-12 col-sm-8 col-md-6 col-lg-4 col-xl-4>
-          <ion-buttons start align="left">
-            <button ion-button icon-only (click)="logout()">
-            <ion-icon name="md-log-out" color="dark"></ion-icon></button>
-          </ion-buttons> 
           <ion-title align="center"><h1>Ingrese los datos del <br> nuevo empleado</h1></ion-title>
           <ion-list inset>
-          <!--ion-item>
-            <ion-label>Nombre de la empresa</ion-label>
-            <ion-select [(ngModel)]="user.empresa">
-            <ion-option *ngFor="let empresa of empresas" [value]="empresa.nombre">
-                {{empresa.nombre}}
-            </ion-option>
-            </ion-select>
-            </ion-item-->
             <ion-item>
             <ion-label floating>Primer Nombre</ion-label>
             <ion-input type="text" [(ngModel)]="user.primerNombre" name="primerNombre" required minlength="1"></ion-input>
@@ -40,10 +29,17 @@
             <ion-input type="text" [(ngModel)]="user.rut" name="rut" required minlength="1"></ion-input>
             </ion-item>
             <ion-item>
+            <ion-label floating>Nombre de la empresa</ion-label>
+            <ion-select [(ngModel)]="user.empresa" name="empresa" required minlength="1">
+            <ion-option *ngFor="let empresa of empresas" [value]="empresa.nombre">
+                {{empresa.nombre}}
+            </ion-option>
+            </ion-select>
+            </ion-item>
+            <ion-item>
             <ion-label floating>Cargo</ion-label>
             <ion-input type="text" [(ngModel)]="user.cargo" name="cargo" required minlength="1"></ion-input>
             </ion-item>
-            <br><br>
             <ion-item>
             <ion-label floating>Perfil</ion-label>
             <ion-select [(ngModel)]="user.perfil" name="perfil" required minlength="1">

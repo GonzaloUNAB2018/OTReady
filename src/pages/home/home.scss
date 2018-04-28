@@ -1,3 +1,31 @@
 page-home {
 
+  
+
+    .profile-image{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+
+    h1{
+        font-size: 100%;
+        color: white
+      }
+
+    .backButton {
+        font-size: 30px;
+        color: white;
+    }
+
+    .home-content {
+        background: color($colors, primary, base);
+    }
+      
+    .home-box {
+        background: color($colors, primary, contrast);
+        padding: 20px 20px 0px 20px;
+        margin-top: 30px;
+    }
+
 }

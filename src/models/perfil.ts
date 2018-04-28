@@ -6,6 +6,7 @@ export class Perfil {
     segundoApellido: string;
     rut: string;
     perfil: string;
-    id: number;
+    empresa: string;
+    id: string;
     fotoPerfil: string;
 }
