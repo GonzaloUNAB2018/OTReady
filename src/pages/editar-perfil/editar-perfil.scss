@@ -1,0 +1,68 @@
+page-editar-perfil {
+
+  ion-input{
+    font-size: 20px
+  }
+
+  ion-select{
+    font-size: 20px
+  }
+
+    .backButton {
+        font-size: 30px;
+        color: white;
+    }
+
+
+    ion-title{
+        text-align: center;
+        letter-spacing: 3px;
+
+        h1{
+            color: white
+          }
+
+    }
+
+  .login-content {
+    background: color($colors, primary, base);
+  
+    .login-box {
+        background: color($colors, primary, contrast);
+        padding: 20px 20px 0px 20px;
+        margin-top: 30px;
+    }
+ 
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+ 
+     ion-item {
+         border-radius: 30px !important;
+         padding-left: 30px !important;
+         font-size: 0.9em;
+         margin-bottom: 10px;
+         border: 1px solid color($colors, light);
+         border-bottom: 0px !important;
+         box-shadow: none !important;
+     }
+ 
+     .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 20px;
+     }
+ 
+     .item-inner {
+       border-bottom-color: color($colors, light) !important;
+       box-shadow: none !important;
+     }
+ 
+     .submit-btn {
+        background: color($colors, secondary);
+        border-radius: 30px !important;
+        border: 1px solid color($colors, light);
+     }
+  }
+
+}

@@ -1,14 +1,45 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="logout()">
+      <ion-icon name="log-out" color="dark"></ion-icon></button>
+    </ion-buttons> 
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col col-12 col-sm-9 col-md-8 col-lg-6 col-xl-6>
+            <!--br>
+            <h1 align="center" style="color: #fff">Bienvenido<br><b>{{(perfilData | async)?.firstName}}</b><br>OT Ready</h1><br><br>
+            <h2 align="center" style="color: #fff">Tus datos de perfil son los siguientes:</h2><br>
+            <h3 style="color: #fff"><b>Nombre :</b> {{(perfilData | async)?.firstName}} {{(perfilData | async)?.lastName}}</h3>
+            <h3 style="color: #fff"><b>Cargo :</b> {{(perfilData | async)?.cargo}}</h3>
+            <h3 style="color: #fff"><b>Perfil de Usuario :</b> {{(perfilData | async)?.perfil}}</h3>
+            <br-->
+            <ion-card *ngIf="!coor">
+              <ion-card-content>
+              <h3>Su perfil no permite usar ésta aplicación desde la web</h3>
+              <h3>Por favor, ingrese mediante nuestra APP Android y realice sus labores por ese medio</h3>
+              </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+  
+        <ion-col>
+        </ion-col>
+        <ion-col *ngIf="coor" align="center">
+            <button ion-button (click)="toUsuariosPage()" class="green"> Usuarios </button>
+        </ion-col>
+        <ion-col *ngIf="coor" align="center">
+            <button ion-button (click)="toListaPage()" class="green"> Listados </button>
+        </ion-col>
+        <ion-col align="center">
+            <button ion-button (click)="toInfoPage()" class="green"> Información </button>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

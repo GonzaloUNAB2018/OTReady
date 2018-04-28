@@ -1,0 +1,34 @@
+<ion-content class="login-content" padding>
+  <div class="login-box">
+    <form  #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+              <ion-title>
+                <h1>OT Ready</h1>
+              </ion-title>
+            <br>
+            <br>
+              <ion-item>
+                <ion-label floating>Correo Electrónico</ion-label>
+              <ion-input class="size" [(ngModel)]="user.email" type="email" autocorrect="off" autocapitalize="none" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9._%+-]+\.[a-z]{2,3}$" required></ion-input>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label floating>Contraseña</ion-label>
+              <ion-input class="size" [(ngModel)]="user.password" type="password" name="password" required minlength="6"></ion-input>
+              </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid" (click)="login()">Login</button>
+          <button ion-button class="register-btn" block clear (click)="signin()">Crear Nueva Cuenta</button>
+        </ion-col>
+      </ion-row>
+    </form>  
+  </div>
+</ion-content>
