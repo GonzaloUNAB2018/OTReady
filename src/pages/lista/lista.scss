@@ -1,0 +1,39 @@
+page-lista {
+
+    .back-button-icon.icon.icon-md.back-button-icon-md.ion-md-arrow-back{
+        font-size: 30px;
+        color: #dfdbdb;
+    }
+
+    .toolbar-background.toolbar-background-md{
+        background: color($colors, primary, base);
+    }
+
+    .home-content {
+        background: color($colors, primary, base);
+    }
+
+    h1{
+        color: #dfdbdb
+    }
+    
+
+    .item{
+        background: rgba(0, 92, 128, 0.4);
+    }
+
+    .color{
+        background-color: rgb(170, 168, 168)
+    }
+
+    ion-content{
+        div.scroll-content{
+            background-size: 100% 100%
+        }
+    }
+
+    a{
+        font-size: 30px
+    }
+    
+}

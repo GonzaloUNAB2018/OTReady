@@ -1,0 +1,39 @@
+page-formulario {
+
+    .back-button-icon.icon.icon-md.back-button-icon-md.ion-md-arrow-back{
+        font-size: 30px;
+        color: #dfdbdb;
+    }
+
+    .toolbar-background.toolbar-background-md{
+        background: color($colors, primary, base);
+    }
+
+    .home-content {
+        background: color($colors, primary, base);
+    }
+
+    h1{
+        color: #dfdbdb
+    }
+
+    h3 {
+        font-style: italic;
+    }
+
+    .autoajuste{
+        white-space: normal;
+
+    }
+
+    ion-content{
+        div.scroll-content{
+            background-size: 100%
+        }
+    }
+
+    button.green{
+        background: rgba(0, 128, 0, 0.4);
+    }
+
+}

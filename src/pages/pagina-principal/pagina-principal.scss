@@ -1,58 +1,66 @@
 page-pagina-principal {
 
-    p{
-        font-family: Arial, Helvetica, sans-serif;
+    .backButton {
+        position: absolute;
+        left: 0;
+        top: 40%;
+        width: 100%;
+        bottom: 50%;
+        text-align: center;
+        font-size: 7vw;
+        color: white;
+    }
+
+    ion-title{
+        text-align: center
+    }
+
+    h1{
         
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #dfdbdb;
+        font-size: 4.5vw
+    } 
+
+    ion-item{
+        ion-icon{
+            color: #dfdbdb;
+            font-size: 20vw
+            
+        }
+        p{
+            font-family: Arial, Helvetica, sans-serif;
+        } 
     }
 
     .label.label-md{
         text-align: center
     }
 
-    ion-icon{
-        font-size: 25vw;
-        color: ($colors, light)
-    }
-
-    .blue{
-        font-size: 30px;
-        background-color: rgb(114, 136, 197);
-    }
-
-    .green{
-        font-size: 30px;
-        background-color: rgb(107, 155, 103);
-    }
-
-    .red{
-        font-size: 30px;
-        background-color: rgb(170, 100, 88);
-    }
-
-    .violet{
-        font-size: 30px;
-        background-color: rgb(124, 81, 126);
-    }
-
-    .profile-image{
-        width: 400px;
-        height: 400px;
-        border-radius: 50%;
-    }
-
-    .backButton {
-        font-size: 30px;
-        color: white;
+    .size{
+        font-size: 4vw;
+        color: #dfdbdb
     }
 
     .home-content {
         background: color($colors, primary, base);
     }
-      
-    .home-box {
-        background: color($colors, primary, contrast);
-        padding: 20px 20px 0px 20px;
-        margin-top: 30px;
+
+    
+    .blue{
+        background-color: #6660b8
     }
 
+    .red{
+        background-color: #a83f3f
+    }
+    
+    .green{
+        background-color: #397c42
+    }
+
+    .violet{
+        background-color: #72457a
+    }
 }

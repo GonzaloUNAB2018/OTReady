@@ -22,6 +22,9 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { Camera } from '@ionic-native/camera';
 import { CambiosPerfilPageModule } from '../pages/cambios-perfil/cambios-perfil.module';
 import { PaginaPrincipalPageModule } from '../pages/pagina-principal/pagina-principal.module';
+import { ListaPageModule } from '../pages/lista/lista.module';
+import { FormularioPageModule } from '../pages/formulario/formulario.module';
+import { NotesService } from '../services/note.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { PaginaPrincipalPageModule } from '../pages/pagina-principal/pagina-prin
     EditarPerfilPageModule,
     PerfilPageModule,
     CambiosPerfilPageModule,
-    PaginaPrincipalPageModule
+    PaginaPrincipalPageModule,
+    ListaPageModule,
+    FormularioPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,6 +59,7 @@ import { PaginaPrincipalPageModule } from '../pages/pagina-principal/pagina-prin
     PerfilService,
     EmpresaService,
     Camera,
+    NotesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

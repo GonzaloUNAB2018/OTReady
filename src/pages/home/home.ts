@@ -11,6 +11,7 @@ import { PerfilPage } from '../perfil/perfil';
 import firebase from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { EditarPerfilPage } from '../editar-perfil/editar-perfil';
+import { PaginaPrincipalPage } from '../pagina-principal/pagina-principal';
 
 @Component({
   selector: 'page-home',
@@ -104,28 +105,7 @@ export class HomePage {
   
     }
 
-  logout(){
-    this.afAuth.auth.signOut()
-    .then(() =>{
-
-      let loader = this.loadingCtrl.create({
-        content: "Serrando Sesión...",
-        duration: 2000
-      });
-      loader.present().then(()=>
-      {this.navCtrl.setRoot(LoginPage);}
-    );
-
-      }),(error) => {
-      let alert = this.alertCtrl.create({
-        title: 'Hubo un error en el cierre de sesión',
-        subTitle: 'Por favor intente nuevamente.',
-        buttons: ['OK']
-      });
-        alert.present();}
-        
-      }
-
+ 
   toPerfilPage(){
     this.navCtrl.push(PerfilPage)
   }
@@ -140,6 +120,10 @@ export class HomePage {
 
   toUsuariosPage(){
     //this.navCtrl.push(ContactosPage);
+  }
+
+  back(){
+    this.navCtrl.setRoot(PaginaPrincipalPage)
   }
 
   ionViewWillEnter(){

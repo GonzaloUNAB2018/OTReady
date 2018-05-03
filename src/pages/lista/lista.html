@@ -1,0 +1,43 @@
+<ion-header class="home-content">
+  <ion-navbar>
+    <ion-buttons start *ngIf="listaCoor; else noButton">            
+      <button ion-button icon-only (click)="createNote()" #noButton class="color">
+      <ion-icon name="add" color="dark"></ion-icon> NUEVA ORDEN DE TRABAJO </button>
+    </ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-title align="center"><h1 style="font-size: 5.5vw">Listado de Formularios</h1></ion-title>
+        </ion-col>
+        <ion-col col-2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="home-content" padding>
+  <!-- Formulario -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col col-12 col-sm-9 col-md-8 col-lg-6 col-xl-6>
+        <ion-list class="transparente">
+          <ion-item>
+            <button ion-item *ngFor="let note of notes" (click)="goToDetail(note.id)" class="green">
+              <ion-avatar item-start>
+                <a style="color: rgb(209, 204, 204)">{{ note.tipo }}</a>
+              </ion-avatar>
+              <ion-title align=center><h1 style="color: #fff">OT {{ note.id }}</h1></ion-title>
+              <p align=center style="color: #fff">{{ note.title }}</p>
+            </button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

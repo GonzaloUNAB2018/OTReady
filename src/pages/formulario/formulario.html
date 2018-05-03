@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-navbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-title align="center"><h1 style="font-size: 5.5vw">Editor<br>OT {{note.id}}</h1></ion-title>
+        </ion-col>
+        <ion-col col-2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+    <ion-col>
+    </ion-col>
+    <ion-col col-12 col-sm-9 col-md-8 col-lg-6 col-xl-6>
+      <ion-list>
+        <ion-list-header>
+          <h1 align=center>Detalles de la OT</h1>
+        </ion-list-header>
+        <ion-item>
+          <ion-label floating>Tipo de Trabajo</ion-label>
+          <ion-select [(ngModel)]="note.tipo" type="text">
+            <ion-option value="STP">Servicio Técnico</ion-option>                        
+            <ion-option value="URG">Urgencia</ion-option>
+            <ion-option value="TSS">Visita Técnica</ion-option>
+            <ion-option value="REP">Reparación</ion-option> 
+            <ion-option value="CAM">Cambio</ion-option>                 
+          </ion-select>  
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Título</ion-label>
+          <ion-input type="text" [(ngModel)]="note.title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Descripción</ion-label>
+          <ion-textarea [(ngModel)]="note.description"></ion-textarea>
+        </ion-item>
+        <br>
+        <ion-list-header>
+          <h1 align=center>Ubicación</h1>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label floating>Dirección</ion-label>
+          <ion-input [(ngModel)]="note.direccion"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Ciudad</ion-label>
+          <ion-input [(ngModel)]="note.ciudad"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Región</ion-label>
+          <ion-select [(ngModel)]="note.region" type="text">
+            <ion-option value="15">Arica y Parinacota</ion-option>                        
+            <ion-option value="01">Tarapacá</ion-option>
+            <ion-option value="02">Antofagasta</ion-option>
+            <ion-option value="03">Atacama</ion-option> 
+            <ion-option value="04">Coquimbo</ion-option> 
+            <ion-option value="05">Valparaíso</ion-option>                        
+            <ion-option value="06">O'Higgins</ion-option>
+            <ion-option value="07">Maule</ion-option>
+            <ion-option value="08">BioBio</ion-option> 
+            <ion-option value="09">Araucanía</ion-option> 
+            <ion-option value="15">Los Ríos</ion-option> 
+            <ion-option value="10">Los Lagos</ion-option>                        
+            <ion-option value="11">Aysén</ion-option>
+            <ion-option value="12">Magallanes y Ant. Ch</ion-option>
+            <ion-option value="13">Metropolitana</ion-option> 
+          </ion-select>  
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Requiere EPP para trabajo Altura</ion-label>
+          <ion-select [(ngModel)]="note.eppAltura" type="text">
+            <ion-option value="si">Si</ion-option>                        
+            <ion-option value="no">No</ion-option>
+          </ion-select>  
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Tipo de Vehículo</ion-label>
+          <ion-select [(ngModel)]="note.vehiculo" type="text">
+            <ion-option value="furgon">Furgón</ion-option>                        
+            <ion-option value="4x2">PickUp 4x2</ion-option>
+            <ion-option value="4x4">PickUp 4x4</ion-option>
+            <ion-option value="caballo">Caballo</ion-option>
+            <ion-option value="otro">Otro, especificar:</ion-option>             
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label floating>Especificar otro</ion-label>
+          <ion-textarea [(ngModel)]="note.especificarOtro"></ion-textarea>    
+        </ion-item>
+      </ion-list>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col align="center">
+        <ion-buttons start>
+          <button ion-button (click)="deleteNote()" class="green"> Eiminar Formulario </button>
+        </ion-buttons> 
+      </ion-col>
+      <ion-col align="center">
+        <ion-buttons start>
+          <button ion-button (click)="addNote()" class="green"> Guardar Formulario </button>
+        </ion-buttons> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
