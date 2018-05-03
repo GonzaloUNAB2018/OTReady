@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ot.ready.teratec" version="0.0.5.9" xmlns="http://www.teratec.cl/" xmlns:cdv="http://www.teratec.cl/">
+<widget id="ot.ready.teratec" version="0.0.6" xmlns="http://www.teratec.cl/" xmlns:cdv="http://www.teratec.cl/">
     <name>OTReady</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="g.orellanacanales@uandresbello.edu" href="http://www.unab.cl/">Teratec Design Team</author>
