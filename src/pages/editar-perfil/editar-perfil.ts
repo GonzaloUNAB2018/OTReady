@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-//import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
 import { EmpresaService } from '../../services/empresa.services';
@@ -8,6 +7,10 @@ import { Perfil } from '../../models/perfil';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { PerfilService } from '../../services/perfil.service';
 import { HomePage } from '../home/home';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import firebase from 'firebase';
+import { Observable } from 'rxjs/Observable';
+
 
 
 @IonicPage()
@@ -21,7 +24,7 @@ export class EditarPerfilPage {
   user = {} as Perfil;
   id : any = null;
   userId : any;
-
+  perfilData: Observable<any>;
   uid = this.afAuth.auth.currentUser.uid;
 
   constructor(
@@ -32,8 +35,11 @@ export class EditarPerfilPage {
     public afDb: AngularFireDatabase,
     public loadingCtrl: LoadingController,
     public empresaService: EmpresaService,
-    public perfilService: PerfilService
+    public perfilService: PerfilService,
+    public camara: Camera,
   ) {
+
+    this.perfilData = afDb.object(`Usuarios/`+ this.userId).valueChanges()
 
     //Leer lista de empresas
     this.id = navParams.get('id');
@@ -53,6 +59,27 @@ export class EditarPerfilPage {
 
   }
 
+  getFotoPerfil(){
+    /*this.camara.getPicture({
+      destinationType: this.camara.DestinationType.DATA_URL,
+      sourceType : this.camara.PictureSourceType.CAMERA,
+      encodingType: this.camara.EncodingType.JPEG,
+      mediaType: this.camara.MediaType.PICTURE,
+      allowEdit : true,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      quality: 75,
+      saveToPhotoAlbum: true
+    }).then(imageData =>{
+    this.image = `data:image/jpeg;base64,${imageData}`;
+    const imageUp = firebase.storage().ref(`Perfil/`+this.uid+`/Foto_Perfil.jpeg`);
+      imageUp.putString(this.image, 'data_url')
+    }).catch(error =>{
+      console.error( error );
+    });*/
+  }
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditarPerfilPage');
   }
@@ -60,24 +87,12 @@ export class EditarPerfilPage {
   
   //Agregar Empleados en Base de Datos
   signup() {
-    if(this.id != 0){
-      this.perfilService.editPerfil(this.user);
-      alert('Perfil Actualizado');
-      //this.sendNotificationwithImage();
-      }
-    else{
       this.user.id = this.uid;
       this.perfilService.createPerfil(this.user);
-      alert('Bienvenido a OT Ready!');
-      }
-      this.navCtrl.setRoot(HomePage);
+      alert('Validando datos...');
+      this.navCtrl.setRoot(LoginPage);
   }
   
-  
-  
-  
-
-
   logout(){
     this.afAuth.auth.signOut()
     .then(() =>{
@@ -99,7 +114,5 @@ export class EditarPerfilPage {
         alert.present();}
         
       }
-    
-  
 
 }

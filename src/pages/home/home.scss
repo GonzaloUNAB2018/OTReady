@@ -1,17 +1,14 @@
 page-home {
 
-  
-
-    .profile-image{
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
+    p{
+        font-family: Arial, Helvetica, sans-serif;
     }
 
-    h1{
-        font-size: 100%;
-        color: white
-      }
+    .profile-image{
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+    }
 
     .backButton {
         font-size: 30px;

@@ -5,7 +5,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import { SigninPage } from '../signin/signin';
 
-
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -19,14 +18,15 @@ export class LoginPage {
     public navParams: NavParams,
     public afAuth: AngularFireAuth,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
   ) {
+    
   }
 
   login(){
       this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
       .then(() => {
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(HomePage)
       },(err) => {
         let alert = this.alertCtrl.create({
           title: 'Email Incorrecto',
@@ -42,7 +42,6 @@ export class LoginPage {
   }
 
   signin(){
-    //this.navCtrl.setRoot(SigninPage);
     this.navCtrl.push(SigninPage);
   }
 

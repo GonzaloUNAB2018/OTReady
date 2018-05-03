@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from '../../models/user';
 import { LoginPage } from '../login/login';
+import { EditarPerfilPage } from '../editar-perfil/editar-perfil';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,6 @@ import { LoginPage } from '../login/login';
 })
 export class SigninPage {
   user : any = {} as User;
-  id : any = null;
   
   constructor(
     public navCtrl: NavController,
@@ -23,30 +23,12 @@ export class SigninPage {
     public navParams: NavParams,
   ) {
 
-    //Leer lista de empresas
-    /*this.id = navParams.get('id');
-    if(this.id !=0){
-      let loader = this.loadingCtrl.create({
-        content: "Cargando datos...",
-        duration: 1500
-      });
-      loader.present();
-      empresaService.getEmpresas().valueChanges()
-      .subscribe( empresas => {
-        console.log(empresas)
-        this.empresas = empresas;
-      });
-    };*/
-
   }
+
   signup(){
-    
     this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password)
     .then(
-
       res => {
-        //this.navCtrl.setRoot(LoginPage);
-        //this.navCtrl.pop();
       }, error => {
         let alert = this.alertCtrl.create({
           title: 'Email Incorrecto',
@@ -59,9 +41,8 @@ export class SigninPage {
           duration: 1000
         });
         loader.present();
-
         setTimeout(() => {
-          this.navCtrl.pop();
+          this.navCtrl.setRoot(EditarPerfilPage)
           let loader2 = this.loadingCtrl.create({
             spinner: 'hide',
             content: 'Usuario Creado',
@@ -72,8 +53,6 @@ export class SigninPage {
         /*this.afAuth.authState.subscribe(auth => {
           this.afDb.object('Empresas/'+this.empresa.id+'/'+this.user.empresa+'/'+this.user.primerNombre+' '+this.user.primerApellido).set(this.user)
         });*/
-        
-
   } 
 
   back(){
@@ -85,7 +64,6 @@ export class SigninPage {
   }
 
   ionViewWillUnload(){
-    
   }
 
 

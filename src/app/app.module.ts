@@ -18,6 +18,10 @@ import { SigninPageModule } from '../pages/signin/signin.module';
 import { PerfilService } from '../services/perfil.service';
 import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
 import { EmpresaService } from '../services/empresa.services';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { Camera } from '@ionic-native/camera';
+import { CambiosPerfilPageModule } from '../pages/cambios-perfil/cambios-perfil.module';
+import { PaginaPrincipalPageModule } from '../pages/pagina-principal/pagina-principal.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { EmpresaService } from '../services/empresa.services';
     AngularFireDatabaseModule,
     //LoginPageModule,
     SigninPageModule,
-    EditarPerfilPageModule
+    EditarPerfilPageModule,
+    PerfilPageModule,
+    CambiosPerfilPageModule,
+    PaginaPrincipalPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,6 +53,7 @@ import { EmpresaService } from '../services/empresa.services';
     SplashScreen,
     PerfilService,
     EmpresaService,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

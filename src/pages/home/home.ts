@@ -1,18 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-//import { ModalController } from 'ionic-angular/components/modal/modal-controller';
-//import { ListaPage } from '../lista/lista';
-//import { InfoPage } from '../info/info';
 import { PerfilService } from '../../services/perfil.service';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-//import { ContactosPage } from '../contactos/contactos';
 import { LoginPage } from '../login/login';
-import { EditarPerfilPage } from '../editar-perfil/editar-perfil';
-import { empty } from 'rxjs/Observer';
 import { Perfil } from '../../models/perfil';
+import { PerfilPage } from '../perfil/perfil';
+import firebase from 'firebase';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { EditarPerfilPage } from '../editar-perfil/editar-perfil';
 
 @Component({
   selector: 'page-home',
@@ -22,10 +20,14 @@ export class HomePage {
   userId = this.afAuth.auth.currentUser.uid;
   perfilData: Observable<any>;
   coor: boolean;
-  perfilUser : any;
+  fotoPerfil: boolean;
   perfil: any = null;
-  rut: any = null;
-  usuario : any = {} as Perfil
+  image: string = null;
+
+  urlFoto : any = null
+  storage = firebase.storage();
+  storageRef = this.storage.ref();
+  spaceRef : any
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -35,56 +37,98 @@ export class HomePage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    ) {
-
-    this.perfilData = afDatabase.object(`Usuarios/`+ this.userId).valueChanges()
+    public camara: Camera,
+    public zone: NgZone,
+    ){
+    
 
     this.perfil = this.perfilService.getPerfil
+    this.perfilData = afDatabase.object(`Usuarios/`+ this.userId).valueChanges();
 
     if(this.perfil != 0){
       perfilService.getPerfil(this.perfil)
-        .valueChanges().subscribe(perfil =>{
-          if (perfil == null ){
-            this.navCtrl.setRoot(EditarPerfilPage)
-          }else{
-          if (perfil == "Coordinador"){
-            console.log("Sesión de Coordinador");
-            this.coor = true
-          }else if (perfil == "Gerencial"){
-            console.log("Sesión de Gerente");
-            this.coor = true
-          }else{
-            console.log("Sesión de Técnico / Supervisor")
-            this.coor = false;}
-          }
+      .valueChanges().subscribe(perfil =>{
+        if (perfil == "Coordinador"){
+          console.log("Sesión de Coordinador");
+          this.coor = true
+          this.fotoPerfil = true;
+          this.foto()
+        }else if (perfil == "Gerente"){
+          console.log("Sesión de Gerente");
+          this.coor = true
+          this.fotoPerfil = true;
+          this.foto()
+        }else if(perfil == "Supervisor / Técnico"){
+          console.log("Sesión de Técnico / Supervisor")
+          this.coor = false
+          this.fotoPerfil = true;
+          this.foto()
+        }else{
+          this.coor = false
+          this.perfil == null
+          this.fotoPerfil = false
+          this.navCtrl.setRoot(EditarPerfilPage)
         }
-      )
+      })
     }
+
+    }
+
+    getFotoPerfil(){
+      this.camara.getPicture({
+        destinationType: this.camara.DestinationType.DATA_URL,
+        sourceType : this.camara.PictureSourceType.CAMERA,
+        encodingType: this.camara.EncodingType.JPEG,
+        mediaType: this.camara.MediaType.PICTURE,
+        allowEdit : true,
+        targetWidth: 1000,
+        targetHeight: 1000,
+        quality: 75,
+        saveToPhotoAlbum: true
+      }).then(imageData =>{
+      this.image = `data:image/jpeg;base64,${imageData}`;
+      const imageUp = firebase.storage().ref(`Perfil/`+this.userId+`/Foto_Perfil.jpeg`);
+        imageUp.putString(this.image, 'data_url')
+      }).catch(error =>{
+        console.error( error );
+      });
+    }
+
+    foto(){
+      this.storageRef.child(`Perfil/`+this.userId+`/Foto_Perfil.jpeg`).getDownloadURL()
+      .then((url) =>{
+        this.zone.run(()=>{
+          this.urlFoto = url;
+        })
+      })
+  
+    }
+
+  logout(){
+    this.afAuth.auth.signOut()
+    .then(() =>{
+
+      let loader = this.loadingCtrl.create({
+        content: "Serrando Sesión...",
+        duration: 2000
+      });
+      loader.present().then(()=>
+      {this.navCtrl.setRoot(LoginPage);}
+    );
+
+      }),(error) => {
+      let alert = this.alertCtrl.create({
+        title: 'Hubo un error en el cierre de sesión',
+        subTitle: 'Por favor intente nuevamente.',
+        buttons: ['OK']
+      });
+        alert.present();}
+        
+      }
+
+  toPerfilPage(){
+    this.navCtrl.push(PerfilPage)
   }
-          
-  
-  
-    logout(){
-      this.afAuth.auth.signOut()
-      .then(() =>{
-  
-        let loader = this.loadingCtrl.create({
-          content: "Serrando Sesión...",
-          duration: 2000
-        });
-        loader.present().then(()=>
-        {this.navCtrl.setRoot(LoginPage);}
-      );
-  
-        }),(error) => {
-        let alert = this.alertCtrl.create({
-          title: 'Hubo un error en el cierre de sesión',
-          subTitle: 'Por favor intente nuevamente.',
-          buttons: ['OK']
-        });
-          alert.present();}
-          
-        }
 
   toListaPage(){
     //this.navCtrl.push(ListaPage);
@@ -98,8 +142,11 @@ export class HomePage {
     //this.navCtrl.push(ContactosPage);
   }
 
+  ionViewWillEnter(){
+
+  }
+
   ionViewDidLoad() {
   }
 
 }
-

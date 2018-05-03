@@ -8,5 +8,7 @@ export class Perfil {
     perfil: string;
     empresa: string;
     id: string;
+    fechaNacimiento: string;
     fotoPerfil: string;
+    nacionalidad: string;
 }
