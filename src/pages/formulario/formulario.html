@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title align="center">Editor<br>OT {{note.id}}</ion-title>
+  <ion-buttons start>
+    <button ion-button icon-only (click)="addNote()">
+    <ion-icon name="more" color="dark"></ion-icon></button>
+  </ion-buttons> 
+  </ion-navbar>
+</ion-header>
+  
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+    <ion-col>
+    </ion-col>
+    <ion-col col-12 col-sm-9 col-md-8 col-lg-6 col-xl-6>
+      <ion-list>
+        <ion-list-header>
+          <h1 align=center class="autoajuste">Detalles de la OT</h1>       
+        </ion-list-header>
+        <ion-item>
+          <h2>Tipo de Trabajo: </h2><p>{{(noteData | async)?.tipo}}</p>
+        </ion-item>
+        <ion-item class="autoajuste">
+          <h2>Título: </h2><p>{{(noteData | async)?.title}}</p>
+        </ion-item>
+        <ion-item>
+          <h2>Descripción: </h2><p class="autoajuste">{{(noteData | async)?.description}}</p>
+        </ion-item>
+        <ion-item-divider>
+          <h1 align=center>Ubicación</h1>
+        </ion-item-divider>
+        <ion-item>
+          <h2>Ubicación: </h2><p class="autoajuste">{{(noteData | async)?.direccion}}, {{(noteData | async)?.ciudad}}, Número de Región: {{(noteData | async)?.region}}</p>
+        </ion-item>
+        <ion-item>
+          <h2>Requiere EPP: </h2><p>{{(noteData | async)?.eppAltura}}</p>
+        </ion-item>
+        <ion-item>
+          <h2>Tipo de Vehículo: </h2><p>{{(noteData | async)?.vehiculo}}</p>
+        </ion-item>
+        <ion-item>
+          <h2>Comentarios del vehículo: </h2><p class="autoajuste">{{(noteData | async)?.especificarOtro}}</p>
+        </ion-item>
+      </ion-list>
+
+      <hr style="border:5px; border-color:primary">
+
+      <ion-card>
+        <ion-card-content>
+          <h1 align=center>Formulario de Terreno</h1>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>Fecha</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY, HH:mm" [(ngModel)]="note.horaFecha"></ion-datetime>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+<!-- *************** COORDENADAS INICIO **********************-->
+      
+      <ion-card>
+        <ion-card-content>
+          <button full ion-button (click)="getLatLng()">Tomar Coordenada</button>              
+          <h2>Latitud: </h2> <h3>{{note.latitud}}</h3>
+          <h2>Longitud: </h2> <h3>{{note.longitud}}</h3>
+          <br>
+          <button full ion-button (click)="toMapaPage()">Comprueba el mapa</button>
+        </ion-card-content>
+      </ion-card>
+
+<!-- *************** COORDENADAS FINAL **********************-->
+      <ion-card>
+        <ion-card-content>
+
+<!-- *************** FOTO1 INICIO **********************-->
+          <ion-title>Foto Inicio</ion-title>
+          <button full ion-button (click)="getPicture1()">Tomar Foto</button>
+          <img [src]="note.foto1" *ngIf="note.foto1">
+          
+<!-- *************** FOTO1 FINAL **********************-->
+
+<!-- *************** DESCRIPCIÓN DE FOTO1 INICIO **********************-->
+          <ion-item>
+            <ion-label floating>Descripción</ion-label>
+            <ion-textarea [(ngModel)]="note.descriptionFoto1"></ion-textarea>
+          </ion-item>
+<!-- *************** DESCRIPCIÓN FOTO FINAL **********************-->
+
+
+<!-- *************** FOTO2 AVANCE **********************-->
+        <ion-title>Foto Avance</ion-title>
+        <button full ion-button (click)="getPicture2()">Tomar Foto</button>
+        <img [src]="note.foto2" *ngIf="note.foto2">
+
+<!-- *************** FOTO2 FINAL **********************-->
+
+<!-- *************** DESCRIPCIÓN DE FOTO2 AVANCE **********************-->
+        <ion-item>
+          <ion-label floating>Descripción</ion-label>
+          <ion-textarea [(ngModel)]="note.descriptionFoto2"></ion-textarea>
+        </ion-item>
+<!-- *************** DESCRIPCIÓN FOTO FINAL **********************-->
+
+<!-- *************** FOTO3 Salida **********************-->
+        <ion-title>Foto Salida</ion-title>
+        <button full ion-button (click)="getPicture3()">Tomar Foto</button>
+        <img [src]="note.foto3" *ngIf="note.foto3">
+
+<!-- *************** FOTO3 Salida **********************-->
+
+<!-- *************** DESCRIPCIÓN DE FOTO3 Salida **********************-->
+        <ion-item>
+          <ion-label floating>Descripción</ion-label>
+          <ion-textarea [(ngModel)]="note.descriptionFoto3"></ion-textarea>
+        </ion-item>
+<!-- *************** DESCRIPCIÓN FOTO3 final **********************-->
+      <ion-item>
+        <ion-label floating>Comentarios al terminar</ion-label>
+        <ion-textarea [(ngModel)]="note.comentarios"></ion-textarea>
+      </ion-item>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+        
+</ion-content>
