@@ -1,0 +1,56 @@
+<ion-header class="home-content">
+
+  <ion-navbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2></ion-col>
+        <ion-col col-8><ion-title>Bluetooth</ion-title></ion-col>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="home-content" padding>
+
+  <ion-list padding>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col col-9>
+          <ion-list-header>
+            Equipos Emparejados
+          </ion-list-header>
+        </ion-col>
+        <ion-col col-3>
+          <ion-icon button name="swap" (click)="startScanning()"></ion-icon>
+          <!--button ion-button block (click)="startScanning()">scan</button-->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item *ngFor="let device of pairedDevices">
+      {{device.name}}
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-9>
+          <ion-list-header>
+            Equipos Disponibles
+          </ion-list-header>
+        </ion-col>
+        <ion-col col-3>
+          <ion-icon button name="hand" (click)="disconnect()"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item *ngFor='let device of unpairedDevices'>
+      <span (click)="selectDevice(device.address)">
+        {{device.name}}
+      </span>
+    </ion-item>
+    <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>
+  </ion-list>
+
+</ion-content>

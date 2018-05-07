@@ -3,6 +3,12 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
+import { BackgroundMode } from '@ionic-native/background-mode';
+//import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { Camera } from '@ionic-native/camera';
+
 
 //Firebase
 import { AngularFireModule } from 'angularfire2';
@@ -19,12 +25,14 @@ import { PerfilService } from '../services/perfil.service';
 import { EditarPerfilPageModule } from '../pages/editar-perfil/editar-perfil.module';
 import { EmpresaService } from '../services/empresa.services';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
-import { Camera } from '@ionic-native/camera';
 import { CambiosPerfilPageModule } from '../pages/cambios-perfil/cambios-perfil.module';
 import { PaginaPrincipalPageModule } from '../pages/pagina-principal/pagina-principal.module';
 import { ListaPageModule } from '../pages/lista/lista.module';
-import { FormularioPageModule } from '../pages/formulario/formulario.module';
+//import { FormularioPageModule } from '../pages/formulario/formulario.module';
 import { NotesService } from '../services/note.service';
+import { ImagenesPageModule } from '../pages/imagenes/imagenes.module';
+import { BluetoothPageModule } from '../pages/bluetooth/bluetooth.module';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +53,9 @@ import { NotesService } from '../services/note.service';
     CambiosPerfilPageModule,
     PaginaPrincipalPageModule,
     ListaPageModule,
-    FormularioPageModule
+    //FormularioPageModule,
+    ImagenesPageModule,
+    BluetoothPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -60,6 +70,10 @@ import { NotesService } from '../services/note.service';
     EmpresaService,
     Camera,
     NotesService,
+    BluetoothSerial,
+    BackgroundMode,
+    LocationAccuracy,
+    //BackgroundGeolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -4,7 +4,7 @@ import { NotesService } from '../../services/note.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { PerfilService } from '../../services/perfil.service';
-import { FormularioPage } from '../formulario/formulario';
+//import { FormularioPage } from '../formulario/formulario';
 
 
 @IonicPage()
@@ -76,15 +76,15 @@ export class ListaPage {
     this.perfilService.getPerfil(this.perfil)
     .valueChanges().subscribe(profile =>{
       if (profile == "Coordinador"){
-        this.navCtrl.push(FormularioPage, {id:id});
+        //this.navCtrl.push(FormularioPage, {id:id});
       }else {
-        this.navCtrl.push(FormularioPage, {id:id});
+        //this.navCtrl.push(FormularioPage, {id:id});
       }
     })
   }
 
   public createNote(){
-    this.navCtrl.push(FormularioPage, {id:0});
+    //this.navCtrl.push(FormularioPage, {id:0});
     
   }
   backToHome(){

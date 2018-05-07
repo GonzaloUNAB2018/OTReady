@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
 import { ListaPage } from '../lista/lista';
+import { ImagenesPage } from '../imagenes/imagenes';
 
 
 @IonicPage()
@@ -33,6 +34,10 @@ export class PaginaPrincipalPage {
 
   toListaPage(){
     this.navCtrl.push(ListaPage)
+  }
+
+  toImagenesPage(){
+    this.navCtrl.push(ImagenesPage)
   }
 
   logout(){

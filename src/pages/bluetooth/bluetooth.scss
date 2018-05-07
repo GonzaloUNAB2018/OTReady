@@ -1,0 +1,61 @@
+page-bluetooth {
+
+    .back-button-icon.icon.icon-md.back-button-icon-md.ion-md-arrow-back{
+        font-size: 30px;
+        color: #dfdbdb;
+    }
+
+    .toolbar-background.toolbar-background-md{
+        background: color($colors, primary, base);
+    }
+
+    .home-content {
+        background: color($colors, primary, base);
+    }
+
+    h1{
+        color: #dfdbdb
+    }
+
+    .icon.icon-md.ion-md-swap {
+        position: absolute;
+        left: 0;
+        top: 20%;
+        width: 100%;
+        bottom: 50%;
+        text-align: center;
+        font-size: 7vw;
+        color: #dfdbdb;
+    }
+
+    .icon.icon-md.ion-md-hand{
+        position: absolute;
+        left: 0;
+        top: 20%;
+        width: 100%;
+        bottom: 50%;
+        text-align: center;
+        font-size: 7vw;
+        color: #dfdbdb;
+    }
+    
+
+    .item{
+        background: rgba(150, 192, 209, 0.925);
+    }
+
+    .color{
+        background-color: rgb(170, 168, 168)
+    }
+
+    ion-content{
+        div.scroll-content{
+            background-size: 100% 100%
+        }
+    }
+
+    a{
+        font-size: 30px
+    }
+
+}
